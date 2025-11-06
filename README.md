@@ -279,7 +279,7 @@ Contributions, issues, and feature requests are welcome!
 
 **Martin Szermet**
 
-- GitHub: [@yszerment84](https://github.com/szerment84)
+- GitHub: [@szerment84](https://github.com/szerment84)
 - LinkedIn: [martin-szerment](https://www.linkedin.com/in/martin-szerment/)
 
 ---
