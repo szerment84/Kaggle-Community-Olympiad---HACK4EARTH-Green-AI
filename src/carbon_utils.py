@@ -12,27 +12,27 @@ def pick_low_ci_window(meta: pd.DataFrame, region: str | None = None) -> dict:
         carbon_intensity_gco2_per_kwh=float(row['carbon_intensity_gco2_per_kwh'].iloc[0])
     )
 
-def energy_co2_proxy(runtime_s: float, mean_ci: float, assumed_kw: float = 0.1) -> tuple[float, float]:
+def energy_co2_proxy(runtime_s: float, mean_ci: float | None, assumed_kw: float = 0.1) -> tuple[float, float]:
     """
-    Proxy: energy_kwh = P[kW] * runtime[h]. We assume 0.1 kW (100 W) for a conservative CPU baseline.
-    CO2e (kg) = energy_kwh * (carbon_intensity[gCO2/kWh] / 1000).
+    Prosty proxy: energia [kWh] = moc[kW] * czas[h]; CO2e [kg] = energia[kWh] * CI[gCO2/kWh]/1000.
+    Gdy brak CI -> zwracamy (energia, 0).
     """
-    energy_kwh = assumed_kw * (runtime_s / 3600.0)
+    energy_kwh = max(runtime_s, 0.0) * assumed_kw / 3600.0
+    if mean_ci is None:
+        return energy_kwh, 0.0
     co2e_kg = energy_kwh * (mean_ci / 1000.0)
     return energy_kwh, co2e_kg
 
-def measure_block(fn, mean_ci: float, label: str, meta_slot: dict | None = None) -> dict:
-    t0 = time.time()
+def measure_block(fn, ci_gco2_per_kwh: float | None):
+    t0 = time.perf_counter()
     out = fn()
-    dt = time.time() - t0
-    e_kwh, co2_kg = energy_co2_proxy(dt, mean_ci)
+    runtime_s = time.perf_counter() - t0
+    energy_kwh, co2e_kg = energy_co2_proxy(runtime_s, ci_gco2_per_kwh)
     rec = {
-        "Scenario": label,
-        "Runtime_s": dt,
-        "Energy_kWh": e_kwh,
-        "CO2e_kg": co2_kg,
-        "picked_region": None if not meta_slot else meta_slot.get("region"),
-        "picked_utc_hr": None if not meta_slot else meta_slot.get("utc_hour"),
+        "Runtime_s": runtime_s,
+        "Energy_kWh": energy_kwh,
+        "CO2e_kg": co2e_kg,
+        "carbon_intensity_gco2_per_kwh": ci_gco2_per_kwh,
         "hardware": platform.platform(),
     }
     return out, rec
