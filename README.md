@@ -256,10 +256,10 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ## 🔗 Links
 
-- 🏆 **[Kaggle Notebook](https://www.kaggle.com/)** — Run the optimizer online
-- 💻 **[GitHub Repository](https://github.com/<your-username>/Kaggle-Community-Olympiad---HACK4EARTH-Green-AI)** — Source code
-- 🚀 **[DoraHacks Entry](https://dorahacks.io/)** — Hackathon submission
-- ⚡ **[OmniEnergy Integration](https://omnienergy.io/)** — Industrial EMS compatibility
+- 🏆 **[Kaggle Notebook](https://www.kaggle.com/code/martinszerment/kaggle-community-olympiad-hack4earth-green-ai)** — Run the optimizer online
+- 💻 **[GitHub Repository](https://github.com/szerment84/Kaggle-Community-Olympiad---HACK4EARTH-Green-AI)** — Source code
+- 🚀 **[DoraHacks Entry](https://dorahacks.io/buidl/36091/)** — Hackathon submission
+- ⚡ **[OmniEnergy Integration](https://www.omnimes.com/en/omnienergy)** — Industrial EMS compatibility
 
 ---
 
@@ -279,8 +279,8 @@ Contributions, issues, and feature requests are welcome!
 
 **Martin Szermet**
 
-- GitHub: [@your-username](https://github.com/your-username)
-- LinkedIn: [Your Profile](https://linkedin.com/in/yourprofile)
+- GitHub: [@yszerment84](https://github.com/szerment84)
+- LinkedIn: [martin-szerment](https://www.linkedin.com/in/martin-szerment/)
 
 ---
 
